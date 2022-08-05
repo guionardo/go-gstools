@@ -20,21 +20,17 @@ func init() {
 }
 
 func (t CustomTime) MarshalJSON() ([]byte, error) {
-	for format := range Formats.Iterator().C {
-		body, err := json.Marshal(time.Time(t).Format(format))
-		if err == nil {
-			return body, nil
-		}
-	}
-	return nil, fmt.Errorf("unsupported CustomTime format")
+	return json.Marshal(time.Time(t).Format(DefaultFormat))
 }
 
 func (j *CustomTime) UnmarshalJSON(data []byte) error {
-	s := strings.Trim(string(data), "\"")
-	t, err := time.Parse(DefaultFormat, s)
-	if err != nil {
-		return err
+	for format := range Formats.Iterator().C {
+		s := strings.Trim(string(data), "\"")
+		t, err := time.Parse(format, s)
+		if err == nil {
+			*j = CustomTime(t)
+			return nil
+		}
 	}
-	*j = CustomTime(t)
-	return nil
+	return fmt.Errorf("unsupported CustomTime format")
 }
