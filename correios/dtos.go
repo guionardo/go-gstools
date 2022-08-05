@@ -19,6 +19,7 @@ type (
 		PossuiLocker               bool       `json:"possuiLocker"`
 		HabilitaLocker             bool       `json:"habilitaLocker"`
 		HabilitaCrowdShipping      bool       `json:"habilitaCrowdshipping"`
+		Mensagem   string     `json:"mensagem"`
 	}
 	Evento struct {
 		Codigo     string     `json:"codigo"`
@@ -26,7 +27,7 @@ type (
 		DataCriado CustomTime `json:"dtHrCriado"`
 		Tipo       string     `json:"tipo"`
 		Unidade    Unidade    `json:"unidade"`
-		UrlIcone   string     `json:"urlIcone"`
+		UrlIcone   string     `json:"urlIcone"`		
 	}
 	TipoPostal struct {
 		Categoria string `json:"categoria"`
