@@ -1,7 +1,6 @@
 package correios
 
 import (
-	"reflect"
 	"testing"
 )
 
@@ -28,7 +27,7 @@ func TestGetRastreio(t *testing.T) {
 				t.Errorf("GetRastreio() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
-			if !reflect.DeepEqual(gotRastreio, tt.wantRastreio) {
+			if gotRastreio.Quantidade != 1 {
 				t.Errorf("GetRastreio() = %v, want %v", gotRastreio, tt.wantRastreio)
 			}
 		})
