@@ -19,7 +19,7 @@ type (
 		PossuiLocker               bool       `json:"possuiLocker"`
 		HabilitaLocker             bool       `json:"habilitaLocker"`
 		HabilitaCrowdShipping      bool       `json:"habilitaCrowdshipping"`
-		Mensagem   string     `json:"mensagem"`
+		Mensagem                   string     `json:"mensagem,omitempty"`
 	}
 	Evento struct {
 		Codigo     string     `json:"codigo"`
@@ -27,7 +27,7 @@ type (
 		DataCriado CustomTime `json:"dtHrCriado"`
 		Tipo       string     `json:"tipo"`
 		Unidade    Unidade    `json:"unidade"`
-		UrlIcone   string     `json:"urlIcone"`		
+		UrlIcone   string     `json:"urlIcone"`
 	}
 	TipoPostal struct {
 		Categoria string `json:"categoria"`
@@ -36,15 +36,16 @@ type (
 	}
 	Unidade struct {
 		CodSro   string   `json:"codSro"`
-		Endereco Endereco `json:"endereco"`
+		Endereco Endereco `json:"endereco,omitempty"`
 		Tipo     string   `json:"tipo"`
+		Nome     string   `json:"nome,omitempty"`
 	}
 	Endereco struct {
-		Bairro     string `json:"bairro"`
-		Cep        string `json:"cep"`
-		Cidade     string `json:"cidade"`
-		Logradouro string `json:"logradouro"`
-		Numero     string `json:"numero"`
-		UF         string `json:"uf"`
+		Bairro     string `json:"bairro,omitempty"`
+		Cep        string `json:"cep,omitempty"`
+		Cidade     string `json:"cidade,omitempty"`
+		Logradouro string `json:"logradouro,omitempty"`
+		Numero     string `json:"numero,omitempty"`
+		UF         string `json:"uf,omitempty"`
 	}
 )
