@@ -177,3 +177,5 @@ Exemplo de retorno em formato JSON
  "versao": "2.1.3"
 }
 ```
+
+## Version
