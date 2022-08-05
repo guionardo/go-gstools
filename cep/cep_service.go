@@ -22,6 +22,14 @@ func NewCEPService(repository CEPRepository) *CEPService {
 	}
 }
 
+func NewSQliteCEPService(connectionString string) (*CEPService, error) {
+	repo, err := NewCEPRepositorySQLite(connectionString)
+	if err == nil {
+		return NewCEPService(repo), nil
+	}
+	return nil, err
+}
+
 func (c *CEPService) GetCEP(cep string) (*CEP, error) {
 	cep = tools.JustNumbers(cep)
 	cepData, err := c.repository.GetCEP(cep)

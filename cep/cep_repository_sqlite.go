@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"fmt"
 	"sync"
-	"time"
 
 	"github.com/guionardo/go-gstools/tools"
 	_ "github.com/mattn/go-sqlite3" // Import go-sqlite3 library
@@ -25,18 +24,14 @@ func (r *CEPRepositorySQLite) GetCEP(cep string) (*CEP, error) {
 	}
 	defer row.Close()
 	for row.Next() {
-		var log, tipo, bairro, municipio, uf string
-		var dataRequisicao time.Time
-		row.Scan(&log, &tipo, &bairro, &municipio, &uf, &dataRequisicao)
-		return &CEP{
-			CEP:            cep,
-			Logradouro:     log,
-			TipoLogradouro: tipo,
-			Bairro:         bairro,
-			Municipio:      municipio,
-			UF:             uf,
-			DataRequisicao: dataRequisicao,
-		}, nil
+		cepData := &CEP{CEP: cep}
+		row.Scan(&cepData.Logradouro,
+			&cepData.TipoLogradouro,
+			&cepData.Bairro,
+			&cepData.Municipio,
+			&cepData.UF,
+			&cepData.DataRequisicao)
+		return cepData, nil
 	}
 	return nil, fmt.Errorf("CEP %s não encontrado", cep)
 }
