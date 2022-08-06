@@ -11,9 +11,10 @@ type CEPService struct {
 	repository CEPRepository
 }
 
-var apis [2]CEPAPI = [2]CEPAPI{
+var apis [3]CEPAPI = [3]CEPAPI{
 	&CEPAPIViaCep{},
 	&CEPAPICep{},
+	&CEPAPIBrasilAPI{},
 }
 
 func NewCEPService(repository CEPRepository) *CEPService {
