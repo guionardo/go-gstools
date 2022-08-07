@@ -18,11 +18,33 @@ jobs:
           go-version: 1.18
 
       - name: Build
-        run: go build -v ./...
+        run: go build -v ./...      
 
       - name: Run tests and generate coverage report
         run: go test -v ./... -race -coverprofile=coverage.txt -covermode=atomic
 
+      - name: Coverage artifact Upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage.txt
+          path: coverage.txt
+
+      # - name: Upload coverage to Codecov
+      #   uses: codecov/codecov-action@v3
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }}
+      #     fail_ci_if_error: true
+      #     verbose: true
+
+  codecov:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Download coverage artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: coverage.txt
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
