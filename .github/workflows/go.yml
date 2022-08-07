@@ -15,7 +15,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
-          go-version: 1.18
+          go-version: 1.19
 
       - name: Build
         run: go build -v ./...      
@@ -28,13 +28,6 @@ jobs:
         with:
           name: coverage.txt
           path: coverage.txt
-
-      # - name: Upload coverage to Codecov
-      #   uses: codecov/codecov-action@v3
-      #   with:
-      #     token: ${{ secrets.CODECOV_TOKEN }}
-      #     fail_ci_if_error: true
-      #     verbose: true
 
   codecov:
     runs-on: ubuntu-latest

@@ -1,6 +1,6 @@
 module github.com/guionardo/go-gstools
 
-go 1.18
+go 1.19
 
 require (
 	github.com/deckarep/golang-set/v2 v2.1.0
@@ -12,6 +12,6 @@ require (
 )
 
 require (
-	github.com/inconshreveable/mousetrap v1.0.0 // indirect
+	github.com/inconshreveable/mousetrap v1.0.1 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 )

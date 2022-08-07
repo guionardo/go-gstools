@@ -1,4 +1,4 @@
-## Version
+# Version
 
 Struct para validação de versões no padrão SemVer.
 
