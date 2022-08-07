@@ -23,3 +23,13 @@ jobs:
 
     - name: Test
       run: go test -v ./...
+
+    - name: Generate coverage report
+      run: |
+        run: go test -v ./... -race -coverprofile=coverage.txt -covermode=atomic        
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        fail_ci_if_error: true        
+        verbose: true
