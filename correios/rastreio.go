@@ -24,17 +24,23 @@ func GetRastreio(codigo string) (rastreio *Rastreio, err error) {
 		return
 	}
 	err = json.Unmarshal(body, &rastreio)
-	
+
 	if err == nil {
 		// Ajusta urls
 
-		for indexObj, objeto := range rastreio.Objetos {			
+		for indexObj, objeto := range rastreio.Objetos {
 			for indexEvt, evento := range objeto.Eventos {
 				if len(evento.UrlIcone) > 0 && !strings.HasPrefix(evento.UrlIcone, "http") {
-					rastreio.Objetos[indexObj].Eventos[indexEvt].UrlIcone = fmt.Sprintf("%s%s", url, evento.UrlIcone)					
+					rastreio.Objetos[indexObj].Eventos[indexEvt].UrlIcone = fmt.Sprintf("%s%s", url, evento.UrlIcone)
 				}
 			}
 		}
 	}
 	return
+}
+
+func (rastreio *Rastreio) Valido() bool {
+	return rastreio.Quantidade > 0 &&
+		rastreio.Objetos != nil &&
+		len(rastreio.Objetos[0].Eventos) > 0
 }
