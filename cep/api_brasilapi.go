@@ -14,11 +14,11 @@ type (
 		APIBase
 	}
 	BrasilAPIModel struct {
-		CEP         string `json:"cep"`
-		Street  string `json:"street"`
+		CEP          string `json:"cep"`
+		Street       string `json:"street"`
 		Neighborhood string `json:"neighborhood"`
-		State      string `json:"state"`
-		City  string `json:"city"`
+		State        string `json:"state"`
+		City         string `json:"city"`
 	}
 )
 
@@ -31,11 +31,12 @@ func (c *CEPAPIBrasilAPI) GetCEP(cep string) (*CEP, error) {
 	if err := json.Unmarshal(body, &model); err != nil {
 		return nil, err
 	}
+
 	return &CEP{
-		CEP:            tools.JustNumbers(model.CEP),
-		Logradouro:     model.Street,
-		Bairro:         model.Neighborhood,
-		Municipio:      model.City,
-		UF:             model.State,
+		CEP:        tools.JustNumbers(model.CEP),
+		Logradouro: model.Street,
+		Bairro:     model.Neighborhood,
+		Municipio:  model.City,
+		UF:         model.State,
 	}, nil
 }

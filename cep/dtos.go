@@ -1,6 +1,9 @@
 package cep
 
-import "time"
+import (
+	"strings"
+	"time"
+)
 
 type CEP struct {
 	CEP            string    `json:"cep" yaml:"cep" toml:"cep"`
@@ -10,4 +13,10 @@ type CEP struct {
 	Municipio      string    `json:"municipio" yaml:"municipio" toml:"municipio"`
 	UF             string    `json:"uf" yaml:"uf" toml:"uf"`
 	DataRequisicao time.Time `json:"data_requisicao" yaml:"data_requisicao" toml:"data_requisicao"`
+}
+
+func (cep *CEP) CheckTipoLogradouro() {
+	if len(cep.TipoLogradouro) == 0 {
+		cep.TipoLogradouro = strings.ToUpper(strings.Split(cep.Logradouro, " ")[0])
+	}
 }
