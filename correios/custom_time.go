@@ -34,3 +34,7 @@ func (j *CustomTime) UnmarshalJSON(data []byte) error {
 	}
 	return fmt.Errorf("unsupported CustomTime format")
 }
+
+func (j *CustomTime) ToTime() time.Time {
+	return time.Time(*j)
+}

@@ -24,6 +24,7 @@ type (
 		GIA         string `json:"gia"`
 		DDD         string `json:"ddd"`
 		SIAFI       string `json:"siafi"`
+		ERRO        string `json:"erro"`
 	}
 )
 
@@ -35,6 +36,9 @@ func (c *CEPAPIViaCep) GetCEP(cep string) (*CEP, error) {
 	}
 	if err := json.Unmarshal(body, &model); err != nil {
 		return nil, err
+	}
+	if len(model.ERRO) > 0 {
+		return nil, fmt.Errorf("CEP %s não encontrado", cep)
 	}
 	return &CEP{
 		CEP:        tools.JustNumbers(model.CEP),

@@ -44,26 +44,29 @@ func TestCustomTime_UnmarshalJSON(t *testing.T) {
 		{
 			name:       "Valid 1",
 			jsonString: `"2019-01-01T00:00:00"`,
-			expected:  time.Date(2019, time.January, 1, 0, 0, 0, 0, time.UTC),
+			expected:   time.Date(2019, time.January, 1, 0, 0, 0, 0, time.UTC),
 			wantErr:    false,
 		},
 		{
 			name:       "Valid 2",
 			jsonString: `"2019-01-01T00:00:00"`,
-			expected: time.Date(2019, time.January, 1, 0, 0, 0, 0, time.UTC),
+			expected:   time.Date(2019, time.January, 1, 0, 0, 0, 0, time.UTC),
 			wantErr:    false,
 		}, {
 			name:       "Invalid 1",
 			jsonString: `"01/01/2019"`,
 			wantErr:    true,
-		},		
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			j := &CustomTime{}
 			if err := j.UnmarshalJSON([]byte(tt.jsonString)); (err != nil) != tt.wantErr {
 				t.Errorf("CustomTime.UnmarshalJSON() error = %v, wantErr %v", err, tt.wantErr)
-			}			
+			}
+			if !reflect.DeepEqual(j.ToTime(), tt.expected) {
+				t.Errorf("CustomTime.UnmarshalJSON() = %v, want %v", j.ToTime(), tt.expected)
+			}
 		})
 	}
 }
