@@ -24,12 +24,13 @@ type (
 		Mensagem                   string     `json:"mensagem,omitempty"`
 	}
 	Evento struct {
-		Codigo     string     `json:"codigo"`
-		Descricao  string     `json:"descricao"`
-		DataCriado CustomTime `json:"dtHrCriado"`
-		Tipo       string     `json:"tipo"`
-		Unidade    Unidade    `json:"unidade"`
-		UrlIcone   string     `json:"urlIcone"`
+		Codigo         string     `json:"codigo"`
+		Descricao      string     `json:"descricao"`
+		DataCriado     CustomTime `json:"dtHrCriado"`
+		Tipo           string     `json:"tipo"`
+		Unidade        Unidade    `json:"unidade"`
+		UnidadeDestino Unidade    `json:"unidadeDestino"`
+		UrlIcone       string     `json:"urlIcone"`
 	}
 	TipoPostal struct {
 		Categoria string `json:"categoria"`
