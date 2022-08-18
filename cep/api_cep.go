@@ -20,6 +20,7 @@ type (
 		StatusText string `json:"statusText"`
 		Status     int    `json:"status"`
 		Ok         bool   `json:"ok"`
+		Message    string `json:"message"`
 	}
 )
 
@@ -41,5 +42,5 @@ func (c *CEPAPICep) GetCEP(cep string) (*CEP, error) {
 			UF:         model.State,
 		}, nil
 	}
-	return nil, fmt.Errorf("CEP %s não encontrado", cep)
+	return nil, fmt.Errorf("CEP %s não encontrado (%d %v)", cep, model.Status, model.Message)
 }
