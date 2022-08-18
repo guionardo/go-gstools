@@ -37,11 +37,10 @@ func (c *CEPAPIViaCep) GetCEP(cep string) (*CEP, error) {
 		return nil, err
 	}
 	return &CEP{
-		CEP:            tools.JustNumbers(model.CEP),
-		Logradouro:     model.Logradouro,
-		TipoLogradouro: model.Complemento,
-		Bairro:         model.Bairro,
-		Municipio:      model.Localidade,
-		UF:             model.UF,
+		CEP:        tools.JustNumbers(model.CEP),
+		Logradouro: model.Logradouro,
+		Bairro:     model.Bairro,
+		Municipio:  model.Localidade,
+		UF:         model.UF,
 	}, nil
 }

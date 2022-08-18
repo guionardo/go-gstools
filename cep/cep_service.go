@@ -41,6 +41,7 @@ func (c *CEPService) GetCEP(cep string) (*CEP, error) {
 		cepDataReq, err := api.GetCEP(cep)
 		if err == nil {
 			cepDataReq.DataRequisicao = time.Now()
+			cepDataReq.CheckTipoLogradouro()
 			err = c.repository.SaveCEP(cepDataReq)
 			return cepDataReq, err
 		}
