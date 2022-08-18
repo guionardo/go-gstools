@@ -1,5 +1,7 @@
 package correios
 
+import "github.com/guionardo/go-gstools/tools"
+
 type (
 	Rastreio struct {
 		Objetos    []Objeto `json:"objetos"`
@@ -49,3 +51,10 @@ type (
 		UF         string `json:"uf,omitempty"`
 	}
 )
+
+func (um *Unidade) String() string {
+	return tools.JoinNotEmpty(um.Tipo, um.Nome, um.CodSro, um.Endereco.String())
+}
+func (em *Endereco) String() string {
+	return tools.JoinNotEmpty(em.Logradouro, em.Numero, em.Bairro, em.Cidade, em.UF)
+}
