@@ -10,7 +10,7 @@ func TestCEPAPIs_GetCEP(t *testing.T) {
 	wantLogradouro := "Rua São José"
 	tests := []struct {
 		name string
-		api  CEPAPI
+		api  CEPAPIProvider
 	}{
 		{
 			name: "BrasilAPI",
