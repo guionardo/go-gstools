@@ -11,7 +11,6 @@ import (
 
 type (
 	CEPAPIViaCep struct {
-		APIBase
 	}
 	ViaCepModel struct {
 		CEP         string `json:"cep"`
@@ -30,7 +29,7 @@ type (
 
 func (c *CEPAPIViaCep) GetCEP(cep string) (*CEP, error) {
 	var model *ViaCepModel
-	body, err := doRequest(fmt.Sprintf("https://viacep.com.br/ws/%s/json/", tools.JustNumbers(cep)))
+	body, err := tools.HttpGet(fmt.Sprintf("https://viacep.com.br/ws/%s/json/", tools.JustNumbers(cep)))
 	if err != nil {
 		return nil, err
 	}

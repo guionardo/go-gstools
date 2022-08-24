@@ -11,7 +11,7 @@ type CEPService struct {
 	repository CEPRepository
 }
 
-var apis [3]CEPAPI = [3]CEPAPI{
+var apis [3]CEPAPIProvider = [3]CEPAPIProvider{
 	&CEPAPIViaCep{},
 	&CEPAPICep{},
 	&CEPAPIBrasilAPI{},
@@ -37,17 +37,36 @@ func (c *CEPService) GetCEP(cep string) (*CEP, error) {
 	if err == nil && cepData != nil && cepData.DataRequisicao.After(time.Now().Add(-24*time.Hour*30)) {
 		return cepData, nil
 	}
+	var errors []error
+	ch := make(chan *CEP)
+	errorChan := make(chan error)
 	for _, api := range apis {
-		cepDataReq, err := api.GetCEP(cep)
-		if err == nil {
-			cepDataReq.DataRequisicao = time.Now()
-			cepDataReq.CheckTipoLogradouro()
-			err = c.repository.SaveCEP(cepDataReq)
-			return cepDataReq, err
+		go func(api CEPAPIProvider) {
+			cepDataReq, err := api.GetCEP(cep)
+			if err == nil {
+				ch <- cepDataReq
+			} else {
+				errorChan <- err
+			}
+		}(api)
+	}
+	for i := 0; i < len(apis); i++ {
+		select {
+		case res := <-ch:
+			if res != nil {
+				res.DataRequisicao = time.Now()
+				res.CheckTipoLogradouro()
+				err = c.repository.SaveCEP(res)
+				return res, err
+			}
+		case err := <-errorChan:
+			if err != nil {
+				errors = append(errors, err)
+			}
 		}
 	}
-	if cepData == nil {
+	if len(errors) == len(apis) {
 		return nil, fmt.Errorf("Nenhuma API disponível")
 	}
-	return cepData, nil
+	return nil, fmt.Errorf("Nenhuma API retornou dados")
 }
