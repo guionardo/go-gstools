@@ -11,7 +11,8 @@ type CEPService struct {
 	repository CEPRepository
 }
 
-var apis [3]CEPAPIProvider = [3]CEPAPIProvider{
+var apis [4]CEPAPIProvider = [4]CEPAPIProvider{
+	&CEPCorreiosAPI{},
 	&CEPAPIViaCep{},
 	&CEPAPICep{},
 	&CEPAPIBrasilAPI{},
