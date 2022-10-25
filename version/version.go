@@ -33,27 +33,21 @@ func VersionParse(version string) (Version, error) {
 }
 
 func (v Version) Compare(other Version) int {
-	if v.major > other.major {
+	n1 := v.major*100000 + v.minor*1000 + v.patch
+	n2 := other.major*100000 + other.minor*1000 + other.patch
+	if n1 > n2 {
 		return 1
-	} else if v.major < other.major {
-		return -1
-	} else {
-		if v.minor > other.minor {
-			return 1
-		} else if v.minor < other.minor {
-			return -1
-		} else {
-			if v.patch > other.patch {
-				return 1
-			} else if v.patch < other.patch {
-				return -1
-			} else {
-				return 0
-			}
-		}
 	}
+	if n1 < n2 {
+		return -1
+	}
+	return 0
 }
 
 func (v *Version) IsNewerThan(other *Version) bool {
 	return v.Compare(*other) > 0
+}
+
+func (v *Version) IsEqual(other *Version) bool {
+	return v.Compare(*other) == 0
 }
