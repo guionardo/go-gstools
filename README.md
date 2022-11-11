@@ -12,3 +12,4 @@ GoLang Guiosoft Tools
 * [Rastreamento de entregas dos Correios](docs/CORREIOS.md)
 * [Validação de Strings de Versões](docs/VERSION.md)
 * [Consulta CEP](docs/CEP.md)
+* [Agendamento](docs/SCHEDULER.md)
