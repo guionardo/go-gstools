@@ -7,7 +7,7 @@ import (
 	"github.com/guionardo/go-gstools/correios"
 )
 
-func main() {
+func correios_example() {
 	rastreio, err := correios.GetRastreio("LB330827204HK")
 	if err != nil {
 

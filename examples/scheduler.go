@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"context"
@@ -8,7 +8,7 @@ import (
 	"github.com/guionardo/go-gstools/scheduler"
 )
 
-func main() {
+func scheduler_example() {
 	sch := scheduler.NewScheduler()
 	sch.AddEvent(func(ctx context.Context) error {
 		println("Hello")
