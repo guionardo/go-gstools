@@ -13,3 +13,4 @@ GoLang Guiosoft Tools
 * [Validação de Strings de Versões](docs/VERSION.md)
 * [Consulta CEP](docs/CEP.md)
 * [Agendamento](docs/SCHEDULER.md)
+* [Logging](docs/LOGGING.md)
