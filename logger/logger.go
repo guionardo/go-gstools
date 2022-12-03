@@ -107,6 +107,10 @@ func (r *Logger) Warningf(format string, a ...interface{}) {
 	r.log(WARNING, Warn, format, a...)
 }
 
+func (r *Logger) Warnf(format string, a ...interface{}) {
+	r.Warningf(format, a...)
+}
+
 func (r *Logger) Fatalf(format string, a ...interface{}) {
 	r.logger.Fatalf(format, a...)
 }
