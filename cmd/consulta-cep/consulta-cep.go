@@ -7,7 +7,6 @@ import (
 
 	"github.com/guionardo/go-gstools/cep"
 	"github.com/guionardo/go-gstools/cmd/shared"
-	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
 )
 
@@ -53,8 +52,8 @@ func init() {
 	rootCmd.PersistentFlags().StringVar(&output_type, "type", "json", "Formato de saída [json, yaml, toml]")
 }
 
-func initConfig() {
-	home, err := homedir.Dir()
+func initConfig() {	
+	home, err := os.UserHomeDir()
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
