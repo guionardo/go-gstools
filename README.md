@@ -6,6 +6,7 @@ GoLang Guiosoft Tools
 [![CodeQL](https://github.com/guionardo/go-gstools/actions/workflows/codeql.yml/badge.svg)](https://github.com/guionardo/go-gstools/actions/workflows/codeql.yml)
 [![Dependency Review](https://github.com/guionardo/go-gstools/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/guionardo/go-gstools/actions/workflows/dependency-review.yml)
 [![codecov](https://codecov.io/gh/guionardo/go-gstools/branch/main/graph/badge.svg?token=KFDEgGbOOw)](https://codecov.io/gh/guionardo/go-gstools)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=guionardo_go-gstools&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=guionardo_go-gstools)
 
 ## Componentes
 
