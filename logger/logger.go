@@ -28,6 +28,16 @@ const (
 	WARNING = "[WARNING]"
 )
 
+var defaultLogger *Logger
+
+func Default() *Logger {
+	if defaultLogger == nil {
+		defaultLogger = &Logger{}
+		defaultLogger.AutoSetup("Default")
+	}
+	return defaultLogger
+}
+
 func (r *Logger) SetLogger(logger *log.Logger) *Logger {
 	r.logger = logger
 	if r.colorize == nil {

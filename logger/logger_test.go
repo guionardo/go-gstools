@@ -52,3 +52,12 @@ func TestLogger_AutoSetup(t *testing.T) {
 	})
 
 }
+
+func TestLogger_Default(t *testing.T) {
+	t.Run("Default", func(t *testing.T) {
+		Default().Infof("Test %s", "Info")
+		if Default().debug {
+			t.Errorf("Logger.debug = %v, want %v", Default().debug, false)
+		}
+	})
+}
