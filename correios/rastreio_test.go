@@ -18,7 +18,7 @@ func TestGetRastreio(t *testing.T) {
 	}{
 		{
 			name:      "Valid 1",
-			codigo:    "NA300080320BR",
+			codigo:    "NA680830120BR",
 			mensagem:  "",
 			wantErr:   false,
 			wantValid: true,
