@@ -16,3 +16,4 @@ GoLang Guiosoft Tools
 * [Agendamento](docs/SCHEDULER.md)
 * [Agendamento simples](docs/SCHEDULE.md)
 * [Logging](docs/LOGGING.md)
+* [GitHub Gist](docs/GIST.md)
