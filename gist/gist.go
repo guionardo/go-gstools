@@ -35,7 +35,7 @@ func GetGistByDescription(ctx context.Context, gistDescription string) (*github.
 		return nil, err
 	}
 	for _, gist := range gists {
-		if *gist.Description == gistDescription {
+		if gist != nil && gist.Description != nil && *gist.Description == gistDescription {
 			return gist, err
 		}
 	}
