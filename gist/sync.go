@@ -57,8 +57,12 @@ func SyncGistFiles(ctx context.Context, gist *github.Gist, localFolder string) (
 	}
 
 	action, err = getAction(localFolder, gist, remoteGist)
-	if err != nil {
+	if err != nil || action == NoAction {
 		return
+	}
+	logs := getFilesDiff(gist, remoteGist)
+	for _, log := range logs {
+		Log(log)
 	}
 	switch action {
 	case Download:

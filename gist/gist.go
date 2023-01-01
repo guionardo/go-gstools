@@ -9,7 +9,7 @@ import (
 
 func GetGistById(ctx context.Context, gistId string) (*github.Gist, error) {
 	if gistId == "" {
-		return nil, errors.New("Cannot get gist with empty id")
+		return nil, EmptyIdGistError
 	}
 	client, err := GetClientFromContext(ctx)
 	if err != nil {
@@ -24,7 +24,7 @@ func GetGistById(ctx context.Context, gistId string) (*github.Gist, error) {
 
 func GetGistByDescription(ctx context.Context, gistDescription string) (*github.Gist, error) {
 	if gistDescription == "" {
-		return nil, errors.New("Cannot get gist with empty description")
+		return nil, EmptyDescriptionGistError
 	}
 	client, err := GetClientFromContext(ctx)
 	if err != nil {
@@ -44,7 +44,7 @@ func GetGistByDescription(ctx context.Context, gistDescription string) (*github.
 
 func PostGist(ctx context.Context, gist *github.Gist) (*github.Gist, error) {
 	if gist == nil {
-		return nil, errors.New("Cannot post empty gist")
+		return nil, EmptyGistError
 	}
 	client, err := GetClientFromContext(ctx)
 	if err != nil {
