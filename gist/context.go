@@ -3,7 +3,6 @@ package gist
 import (
 	"context"
 	"errors"
-	"fmt"
 
 	"github.com/google/go-github/v48/github"
 )
@@ -15,9 +14,12 @@ func NewGitContext(token string, ctx context.Context) (context.Context, error) {
 	if err != nil {
 		return nil, err
 	}
-	if response.StatusCode != 200 {
-		return nil, fmt.Errorf("GitHub API status code %d %s", response.StatusCode, response.Status)
+	if response.StatusCode == 403 {
+		return nil, UnauthorizedError
+	} else if response.StatusCode >= 400 {
+		return nil, HttpResponseError(response.StatusCode, response.Status)
 	}
+
 	return context.WithValue(ctx, "client", gitClient), nil
 }
 

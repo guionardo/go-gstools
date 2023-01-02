@@ -10,6 +10,8 @@ require (
 	gopkg.in/yaml.v3 v3.0.1
 )
 
+require github.com/sergi/go-diff v1.2.0
+
 require (
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/go-github/v48 v48.2.0
